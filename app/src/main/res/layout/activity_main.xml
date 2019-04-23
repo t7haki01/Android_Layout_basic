@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
+<!--From here ConstraintLayout-->
     <android.support.constraint.ConstraintLayout
         app:layout_constraintBottom_toTopOf="@+id/linear_layout1"
         android:id="@+id/const_layout1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -32,27 +38,33 @@
             app:layout_constraintRight_toRightOf="parent"/>
     </android.support.constraint.ConstraintLayout>
 
+    <!--From here LinearLayout-->
     <LinearLayout
+        android:gravity="center"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintBottom_toTopOf="@+id/coordinate_layout1"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/const_layout1"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:id="@+id/linear_layout1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
+            android:gravity="center"
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Linear Layout element 1 in horizontal orientation "/>
+                android:text="Linear Layout element 1"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Linear Layout element 2 in horizontal orientation "/>
+                android:text="Linear Layout element 2"/>
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -61,32 +73,121 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Linear Layout element 3 in horizontal orientation "/>
+                android:text="Linear Layout element 3"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Linear Layout element 4 in horizontal orientation "/>
+                android:text="Linear Layout element 4"/>
         </LinearLayout>
     </LinearLayout>
 
-    <android.support.design.widget.CoordinatorLayout
+<!--From here Coordinatorlayout -->
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         app:layout_constraintTop_toBottomOf="@+id/linear_layout1"
         android:id="@+id/coordinate_layout1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/coordinateLayout">
+            <Button
+                android:id="@+id/show_Btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Click"/>
+            <android.support.design.widget.FloatingActionButton
+                android:layout_marginLeft="200dp"
+                android:layout_marginTop="100dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:src="@android:drawable/ic_search_category_default"/>
+        </android.support.design.widget.CoordinatorLayout>
+    </android.support.constraint.ConstraintLayout>
+
+    <!--From here framework-->
+    <FrameLayout
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="20dp"
+        android:id="@+id/frameLayout"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:fitsSystemWindows="true">
-        <android.support.v7.widget.Toolbar
-            android:layout_width="?attr/actionBarSize"
-            android:layout_height="match_parent"
-            android:text="Coordinate layout element1"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-        <TextView
+        app:layout_constraintTop_toBottomOf="@+id/coordinate_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_marginTop="60dp"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/next_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Coordinate layout element2"/>
-        </android.support.v7.widget.Toolbar>
-    </android.support.design.widget.CoordinatorLayout>
+            android:text="Next"/>
+        <TextView
+            android:textSize="20dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/endText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="and this is earliest child so this is bottom,end"/>
+        <TextView
+            android:textSize="20dp"
+            android:paddingLeft="85dp"
+            android:paddingRight="85dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/text5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="child on top of the stack..!"/>
+        <TextView
+            android:textSize="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/text4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="on top of each other! with the most recent"/>
+        <TextView
+            android:textSize="20dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Framelayout is designed to stack child views"/>
+        <TextView
+            android:textSize="20dp"
+            android:paddingRight="40dp"
+            android:paddingLeft="40dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="I found pretty good explanation of it"/>
+        <TextView
+            android:textSize="20dp"
+            android:paddingRight="60dp"
+            android:paddingLeft="60dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This is FrameLayout Demonstration"/>
+
+    </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>
