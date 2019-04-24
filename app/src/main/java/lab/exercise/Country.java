@@ -1,6 +1,7 @@
 package lab.exercise;
 
 import android.util.Log;
+import android.widget.Toast;
 
 public class Country {
 
@@ -87,7 +88,16 @@ public class Country {
 
     public void countryClassF(){Log.d("From Country class", "This method exist only in Country class");}
 
-    public void runDemo(){
+    public String countryClassF(boolean doYouWantString) {
+        if (doYouWantString) {
+            return "From Country class " + "This method exist only in Country class";
+        } else
+            return "";
+    }
+
+    public String runDemo(){
+        String result = "";
+
         Country korea = new Country();
         Country finland = new Country();
 
@@ -96,6 +106,8 @@ public class Country {
         korea.setCapitalCity("Seoul");
         korea.setContinent("Asia");
 
+        result += "Capital city of Finland is " + finland.getCapitalCity() + " and Finland is located in " + finland.getContinent() ;
+        result += "\nCapital city of Korea is " + korea.getCapitalCity() + " and Korea is located in " + korea.getContinent();
         Log.d("","Capital city of Finland is " + finland.getCapitalCity() + " and Finland is located in " + finland.getContinent());
         Log.d("","Capital city of Korea is " + korea.getCapitalCity() + " and Korea is located in " + korea.getContinent());
 
@@ -104,6 +116,7 @@ public class Country {
          City busan = new City();
          City tampere = new City();
 
+         result += "\nEven without implementing any line of coding, with extends those are able to do";
          Log.d("","Even without implementing any line of coding, with extends those are able to do");
 
          busan.setContinent("Asia");
@@ -115,6 +128,9 @@ public class Country {
          busan.setNationalNumberForPhoneInOutside("+82");
          tampere.setNationalNumberForPhoneInOutside("+358");
 
+         result += "\n" + busan.getCityName() + " is City, " + busan.getCurrency() + " is used as currency and " + busan.getNationalNumberForPhone() + " is used as national phone code";
+         result += "\n" + tampere.getCityName() + " is City, " + tampere.getCurrency() + " is used as currency and " + tampere.getNationalNumberForPhone() + " is used as national phone code";
+
          Log.d("",busan.getCityName() + " is City, " + busan.getCurrency() + " is used as currency and " + busan.getNationalNumberForPhone() + " is used as national phone code");
          Log.d("",tampere.getCityName() + " is City, " + tampere.getCurrency() + " is used as currency and " + tampere.getNationalNumberForPhone() + " is used as national phone code");
 
@@ -123,16 +139,21 @@ public class Country {
           * */
 
          Country parentClassCountry = new Country();
+
+         result += "\nFrom Country parent " + parentClassCountry.countryClassF(true);
          Log.d("From Country parent", "");
          parentClassCountry.countryClassF();
 
+
          City childClassCity = new City();
+         result += "\nFrom City child class" + childClassCity.cityClassF(true) + childClassCity.countryClassF(true);
          Log.d("From City child class", "");
          childClassCity.cityClassF();
          childClassCity.countryClassF();
 
          Country countryClassButCity = new City();
          Log.d("From casted class", "");
+         result += "\nFrom casted class " + countryClassButCity.countryClassF(true);
          countryClassButCity.countryClassF();
          /**Here Android Studio complains that even it is initiated with City class
           * beacuse it is declared with Country type*/
@@ -140,6 +161,8 @@ public class Country {
          Log.d("after comment out", "then casted with City class");
          /**But with casting it is able to use 'cityClassF' since object has form of City class also*/
          ((City) countryClassButCity).cityClassF();
+
+         result += "\nafter comment out" + "then casted with City class" + ((City) countryClassButCity).cityClassF(true);
 
          /**From here demonstration of override*/
          OverrideCity someCity = new OverrideCity();
@@ -151,18 +174,32 @@ public class Country {
                  " and used currency is " + someCity.getCurrency() + " and it is located in " + someCity.getContinent() + " and lastly this city name is "
          + someCity.getCityName());
 
+         result += "\nFrom override Class" + "some city's capital city is " + someCity.getCapitalCity() +
+                 " and used currency is " + someCity.getCurrency() + " and it is located in " + someCity.getContinent() + " and lastly this city name is "
+                 + someCity.getCityName() ;
+
          /**From here, demonstrating the abstract class*/
          Log.d("From abstract class", "");
          /*Abstract class can not be instantiated**/
 //         InfoFrame infoFrame = new InfoFrame();
         PlaceInfo placeInfo = new PlaceInfo("Some place", "Somewhere", "Something");
         Log.d("",placeInfo.explain());
+
+        result += "\nFrom abstract class" + placeInfo.explain();
+
+        return result;
     }
 }
 
  class City extends Country{
 
     public void cityClassF(){Log.d("From City Class", "This method exist only in City class!");}
+    public String cityClassF(boolean doYouWantString){
+        if(doYouWantString)
+            return "From City Class " + "This method exist only in City class!";
+        else
+            return "";
+    }
  }
 
  class OverrideCity extends Country{
